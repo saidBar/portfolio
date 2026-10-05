@@ -3,7 +3,8 @@ title: "CloudShare"
 slug: cloudshare
 summary: "A full-stack cloud file-sharing app: a Laravel REST API with token auth and a Flutter mobile client where users upload files, keep them private, share them with specific people by email, or publish them to everyone."
 type: Full-Stack Mobile App
-role: Full-stack developer (backend + mobile), internship project
+role: Full-stack developer (backend + mobile), internship project at CtrlZ
+company: CtrlZ
 status: Completed
 startDate: 2025
 endDate: 2025
@@ -20,6 +21,7 @@ tech:
   - PHP
   - Laravel Sanctum
   - Eloquent ORM
+  - MySQL
   - REST API
   - SharedPreferences
   - file_picker
@@ -36,9 +38,9 @@ tags:
 
 # CloudShare
 
-> *"Your files, your cloud, your control."* A cloud file-sharing platform that I built end to end during my internship. I wrote both the Laravel backend API and the Flutter mobile app.
+> *"Your files, your cloud, your control."* A cloud file-sharing platform that I built end to end during my internship at **CtrlZ**. I wrote both the Laravel backend API and the Flutter mobile app.
 
-> **Note:** CloudShare was developed for the company where I did my internship, and the source code belongs to them. This write-up describes the product, the architecture, and my work on it without sharing proprietary code.
+> **Note:** CloudShare was developed for **CtrlZ**, where I did my internship, and the source code belongs to them. This write-up describes the product, the architecture, and my work on it without sharing proprietary code.
 
 ## Overview
 
@@ -66,7 +68,7 @@ Sharing files usually means picking between "only me" and "anyone with the link"
 ## Backend: Laravel REST API
 
 ### Data model
-I designed the relational schema and the Eloquent models:
+I designed the relational **MySQL** schema and the Eloquent models:
 
 - **User:** account, profile picture, and Sanctum API tokens.
 - **File:** name, storage path, MIME type, size, description, owner, and a **`visibility`** field (`private` / `shared` / `public`).
@@ -163,9 +165,9 @@ I also reviewed my own API critically and wrote down concrete improvements: rate
 | | |
 |---|---|
 | **Role** | Full-stack developer: backend API, mobile app, and API testing |
-| **Context** | Internship project, built for the host company |
+| **Context** | Internship project at CtrlZ |
 | **Year** | 2025 |
-| **Backend** | Laravel (PHP), Sanctum, Eloquent ORM, Laravel Storage |
+| **Backend** | Laravel (PHP), MySQL, Sanctum, Eloquent ORM, Laravel Storage |
 | **Mobile** | Flutter (Dart), Material Design, SharedPreferences, file_picker |
 | **Tooling** | Postman (environments + test scripts), VS Code |
-| **Source** | Proprietary, owned by the host company |
+| **Source** | Proprietary, owned by CtrlZ |
