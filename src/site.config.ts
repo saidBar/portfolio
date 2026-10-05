@@ -1,6 +1,6 @@
 // Edit these values to change the text in the hero section.
 export const site = {
-  name: 'Said Baroudi',
+  name: 'Said Barudi',
   role: 'Mobile Developer',
   headline: 'I build secure, production-ready mobile apps.',
   intro:
