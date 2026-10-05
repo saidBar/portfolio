@@ -77,7 +77,7 @@ The goal was an app that feels smooth and is easy to browse despite those limits
 - `network_security_config.xml` is set up so the Marvel image CDN, which serves some images over plain HTTP, loads correctly.
 
 ### Branded launch experience
-- A custom **Android 12+ SplashScreen API** splash with the Marvel logo on black, then a switch to the app theme.
+- A custom **Android 12+ SplashScreen API** splash with my **"Marvelpedia — All Heroes, All Marvel"** logo in Marvel red on black, then a switch to the app theme.
 - Custom adaptive launcher icon and a consistent Marvel color palette (`#ED1D24` red on near-black grays).
 
 ## Architecture & Technical Highlights
@@ -123,7 +123,6 @@ Looking back, here's how I'd take it further:
 
 ## Screenshots
 
-<!-- Drop images into /projects/images/marvels-comic-books/ and reference them below. -->
 
 | Splash | Characters | Character Details |
 |:------:|:----------:|:-----------------:|
