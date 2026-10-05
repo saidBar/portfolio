@@ -13,7 +13,7 @@ order: 0
 repo: null
 demo: null
 confidential: true
-cover: /projects/images/tradira/cover.png
+cover: ./images/tradira/cover.png
 tech:
   - Flutter
   - Dart

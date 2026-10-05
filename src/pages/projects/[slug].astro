@@ -1,0 +1,61 @@
+---
+import { getCollection, render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import { formatTimeline } from '../../lib/format';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects');
+  return entries
+    .filter((entry) => entry.id !== 'other-work')
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const data = entry.data;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+const facts = [
+  { label: 'Role', value: data.role },
+  { label: 'Timeline', value: formatTimeline(data.startDate, data.endDate) },
+  { label: 'Status', value: data.status },
+  { label: 'Users', value: data.users },
+].filter((fact) => fact.value);
+---
+
+<Base title={data.title} description={data.summary}>
+  <article class="container project">
+    <a class="back-link" href={`${base}/#work`}>← All projects</a>
+
+    <header class="project-header">
+      <p class="card-type">{data.type}</p>
+      <h1>{data.title}</h1>
+      <p class="lead">{data.summary}</p>
+
+      <dl class="facts">
+        {
+          facts.map((fact) => (
+            <div>
+              <dt>{fact.label}</dt>
+              <dd>{fact.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+
+      <ul class="chips chips-sm">
+        {data.tech.map((item) => <li class="chip">{item}</li>)}
+      </ul>
+
+      <div class="actions">
+        {data.repo && <a class="button" href={data.repo} target="_blank" rel="noopener">View source on GitHub</a>}
+        {data.demo && <a class="button button-ghost" href={data.demo} target="_blank" rel="noopener">Live demo</a>}
+        {!data.repo && data.confidential && <span class="badge">Source code is proprietary</span>}
+      </div>
+    </header>
+
+    <div class="prose">
+      <Content />
+    </div>
+  </article>
+</Base>

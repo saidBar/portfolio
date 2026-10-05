@@ -1,6 +1,6 @@
 ---
-title: "Marvel's Comic Books"
-slug: marvels-comic-books
+title: "Marvelpedia"
+slug: marvelpedia
 summary: "A native Android app in Kotlin that lets you browse the Marvel universe — an infinite-scrolling character gallery with detail pages showing each hero's latest comics, powered by the official Marvel API."
 type: Android App
 role: Solo developer
@@ -8,10 +8,10 @@ status: Completed
 startDate: 2024-07
 endDate: 2024-08
 featured: true
-order: 1
+order: 2
 repo: https://github.com/saidBar/MarvelsComicBooks
 demo: null
-cover: /projects/images/marvels-comic-books/cover.png
+cover: ./images/marvelpedia/cover.png
 tech:
   - Kotlin
   - Android SDK (API 28–34)
@@ -33,13 +33,13 @@ tags:
   - dependency-injection
 ---
 
-# Marvel's Comic Books
+# Marvelpedia
 
 > My first solo project: a native Android app that turns the Marvel Comics API into a fast, browsable gallery of heroes and their comics.
 
 ## Overview
 
-Marvel's Comic Books is a native Android application written entirely in **Kotlin**. It connects to the official **Marvel Developer API** to let users:
+**Marvelpedia** ("All Heroes, All Marvel") is a native Android application written entirely in **Kotlin**. It connects to the official **Marvel Developer API** to let users:
 
 - Scroll through an **endless grid of Marvel characters**, each shown as a card with artwork and name.
 - Tap a character to open a **detail screen** with a full-size portrait, name, and description.
@@ -126,7 +126,7 @@ Looking back, here's how I'd take it further:
 
 | Splash | Characters | Character Details |
 |:------:|:----------:|:-----------------:|
-| ![Splash screen](images/marvels-comic-books/splash.png) | ![Characters grid](images/marvels-comic-books/characters.png) | ![Character details](images/marvels-comic-books/details.png) |
+| ![Splash screen](images/marvelpedia/splash.png) | ![Characters grid](images/marvelpedia/characters.png) | ![Character details](images/marvelpedia/details.png) |
 
 ## Project Facts
 

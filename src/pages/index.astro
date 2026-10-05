@@ -1,0 +1,142 @@
+---
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { site } from '../site.config';
+import { formatTimeline, stripMarkdown } from '../lib/format';
+
+const entries = await getCollection('projects');
+const projects = entries
+  .filter((entry) => entry.id !== 'other-work')
+  .sort((a, b) => a.data.order - b.data.order);
+const [hero, ...rest] = projects;
+
+// "More Projects & Experience" is written as one Markdown file with a
+// "## Heading" per area; each heading becomes a card on the home page.
+const otherWork = entries.find((entry) => entry.id === 'other-work');
+const moreAreas = (otherWork?.body ?? '')
+  .split(/\n## /)
+  .slice(1)
+  .map((section) => {
+    const [heading, ...lines] = section.replace(/<!--[\s\S]*?-->/g, '').split('\n');
+    const meta = lines.find((line) => /^\*\*(Role|Stack|Focus):\*\*/.test(line));
+    const paragraph = lines.find((line) => line.trim() && !line.startsWith('**') && !line.startsWith('-'));
+    let text = paragraph ? stripMarkdown(paragraph) : '';
+    // A paragraph that introduces a list ("…across the whole product:") is
+    // completed with the list's bold labels, e.g. "Backend, Frontend and UI/UX".
+    if (text.endsWith(':')) {
+      const labels = lines
+        .map((line) => line.match(/^- \*\*(.+?):?\*\*/)?.[1])
+        .filter((label): label is string => Boolean(label))
+        .map((label) => (label === label.toUpperCase() ? label : label.toLowerCase()));
+      text = labels.length
+        ? `${text} ${labels.slice(0, -1).join(', ')}${labels.length > 1 ? ' and ' : ''}${labels.at(-1)}.`
+        : text.slice(0, -1) + '.';
+    }
+    return {
+      title: heading.split(':')[0].trim(),
+      meta: meta ? stripMarkdown(meta) : null,
+      text,
+    };
+  });
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const projectUrl = (id: string) => `${base}/projects/${id}/`;
+const sourceLabel = (project: (typeof projects)[number]) =>
+  project.data.repo ? 'Open source' : project.data.confidential ? 'Proprietary' : null;
+---
+
+<Base>
+  <section class="hero container">
+    <p class="eyebrow"><span class="dot"></span>{site.role}</p>
+    <h1>{site.name}</h1>
+    <p class="headline">{site.headline}</p>
+    <p class="lead">{site.intro}</p>
+    <ul class="chips">
+      {site.stack.map((item) => <li class="chip">{item}</li>)}
+    </ul>
+  </section>
+
+  <section id="work" class="container section">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <p>Mobile products I designed, built and shipped.</p>
+    </div>
+
+    {
+      hero && (
+        <a class="feature-card" href={projectUrl(hero.id)}>
+          <div class="feature-body">
+            <div class="badges">
+              {hero.data.status && <span class="badge badge-accent">{hero.data.status}</span>}
+              {hero.data.users && <span class="badge badge-accent">{hero.data.users} users</span>}
+              {sourceLabel(hero) && <span class="badge">{sourceLabel(hero)}</span>}
+            </div>
+            <p class="card-type">{hero.data.type}</p>
+            <h3>{hero.data.title}</h3>
+            <p class="card-summary">{hero.data.summary}</p>
+            <ul class="chips chips-sm">
+              {hero.data.tech.slice(0, 8).map((item) => <li class="chip">{item}</li>)}
+            </ul>
+            <span class="card-link">Read case study →</span>
+          </div>
+          {hero.data.cover && (
+            <div class="feature-media">
+              <Image src={hero.data.cover} alt={`${hero.data.title} screenshot`} widths={[360, 720]} sizes="360px" />
+            </div>
+          )}
+        </a>
+      )
+    }
+
+    <div class="card-grid">
+      {
+        rest.map((project) => (
+          <a class="project-card" href={projectUrl(project.id)}>
+            {project.data.cover && (
+              <div class="card-media">
+                <Image src={project.data.cover} alt={`${project.data.title} screenshot`} widths={[320, 640]} sizes="320px" />
+              </div>
+            )}
+            <div class="card-body">
+              <div class="badges">
+                {project.data.company && <span class="badge badge-accent">{project.data.company}</span>}
+                {sourceLabel(project) && <span class="badge">{sourceLabel(project)}</span>}
+                {formatTimeline(project.data.startDate, project.data.endDate) && (
+                  <span class="badge">{formatTimeline(project.data.startDate, project.data.endDate)}</span>
+                )}
+              </div>
+              <p class="card-type">{project.data.type}</p>
+              <h3>{project.data.title}</h3>
+              <p class="card-summary">{project.data.summary}</p>
+              <ul class="chips chips-sm">
+                {project.data.tech.slice(0, 6).map((item) => <li class="chip">{item}</li>)}
+              </ul>
+              <span class="card-link">Read case study →</span>
+            </div>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    otherWork && moreAreas.length > 0 && (
+      <section id="more" class="container section">
+        <div class="section-head">
+          <h2>{otherWork.data.title}</h2>
+          <p>{otherWork.data.summary}</p>
+        </div>
+        <div class="more-grid">
+          {moreAreas.map((area) => (
+            <article class="more-card">
+              <h3>{area.title}</h3>
+              {area.meta && <p class="more-meta">{area.meta}</p>}
+              <p>{area.text}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    )
+  }
+</Base>

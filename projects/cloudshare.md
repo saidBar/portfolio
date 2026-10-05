@@ -9,11 +9,11 @@ status: Completed
 startDate: 2025
 endDate: 2025
 featured: true
-order: 2
+order: 1
 repo: null
 demo: null
 confidential: true
-cover: /projects/images/cloudshare/my-files.png
+cover: ./images/cloudshare/my-files.png
 tech:
   - Flutter
   - Dart
