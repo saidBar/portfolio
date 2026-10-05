@@ -167,8 +167,8 @@ I designed Tradira in **Figma** as a **professional, dark-themed fintech control
 - **Dashboard:** a header of **live stat tiles with badge counters** (pending requests, active tickets, weekly volume), above a vertical feed of **action items** (latest top-up requests and open tickets). An admin sees what needs attention as soon as the app opens.
 - **User management:** a **search-first** screen. Tapping a user **expands their card** to show their account profiles (name and account number), with quick actions and a clearly separated **red danger zone** for deletion.
 - **Request manager:** **tabs** for Top-ups, Withdrawals, History, and Onboardings. Top-up cards show a **thumbnail of the payment screenshot**, with **green Approve** and **red Deny** actions.
-- **Support center:** a list of chat threads with **open/closed status tags**, which opens into a **real-time admin-to-investor chat**.
-- **Admin tools:** a **grid menu** for academy uploads, weekly analysis uploads, and a **global announcement composer** (text + image).
+- **Support center:** a list of chat threads with **open/closed status tags** and online indicators. Each one opens into a **real-time admin-to-investor chat** with message bubbles, timestamps, **read receipts**, and attachments. Closed tickets become read-only history.
+- **Admin tools:** an inline **weekly analysis composer** (title, summary, image upload, external link), followed by color-coded tiles for **academy uploads**, the **global announcement composer** (text + image), and **top-up method management**, where admins control which payment methods investors see.
 
 ### Investor app
 The same dark, premium look, focused on clarity: a clean access-request form, a dashboard of investment accounts, simple top-up and withdrawal flows with proof upload, support chat, and a content area for announcements, weekly analysis, and academy videos.
@@ -245,12 +245,15 @@ I delivered Tradira in **planned phases**, each with explicit goals, file-level 
 
 ## Screenshots
 
-<!-- Screenshots coming soon. Suggested files in /projects/images/tradira/:
-     cover.png, user-onboarding.png, user-dashboard.png, user-accounts.png, user-topup.png,
-     user-support-chat.png, admin-overview.png, admin-requests.png, admin-users.png,
-     admin-support.png, admin-tools.png -->
+### Admin Control Center
 
-_Screenshots coming soon._
+| Real-time Overview | Users | Request Manager — Top-ups | Request Manager — History |
+|:---:|:---:|:---:|:---:|
+| ![Admin overview dashboard with live stat tiles and action items](images/tradira/admin-overview.png) | ![User management with search and expandable user cards](images/tradira/admin-users.png) | ![Top-up requests with payment proof and Approve/Deny actions](images/tradira/admin-requests-topups.png) | ![History of approved and denied financial requests](images/tradira/admin-requests-history.png) |
+
+| Support Center | Live Support Chat | Closed Ticket | Admin Tools |
+|:---:|:---:|:---:|:---:|
+| ![Support ticket threads with open/closed status tags](images/tradira/admin-support.png) | ![Real-time admin-to-investor chat with attachments and read receipts](images/tradira/admin-chat-open.png) | ![Closed ticket conversation history](images/tradira/admin-chat-closed.png) | ![Admin tools: weekly analysis composer, academy, announcements, top-up methods](images/tradira/admin-tools.png) |
 
 ## Project Facts
 
